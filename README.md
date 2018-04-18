@@ -4,13 +4,15 @@
 This is a Android Augmented Reality APP based on [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2) and OpenGL. The demo video can be found in the below links.
 **demo  videos** 
 
-<a href="http://player.youku.com/player.php/sid/XMzU0NjY5OTAyOA==/v.swf" target="_blank"><img src="result/earth.jpg" 
+<a href="http://player.youku.com/embed/XMzU0NjY5OTAyOA==" target="_blank"><img src="result/earth.jpg" 
 alt="ORB-SLAM2" width="240" height="180" border="10" /></a>
 <embed src='http://player.youku.com/player.php/sid/XMzU0NjY5OTAyOA==/v.swf' allowFullScreen='true' quality='high' width='480' height='400' align='middle' allowScriptAccess='always' type='application/x-shockwave-flash'></embed>
 <a href="http://player.youku.com/player.php/sid/XMzU0NjcwNjI0OA==/v.swf" target="_blank"><img src="result/cube.jpg" 
 alt="ORB-SLAM2" width="240" height="180" border="10" /></a>
 
-<embed src='http://player.youku.com/player.php/sid/XMzU0NjcwNjI0OA==/v.swf' allowFullScreen='true' quality='high' width='480' height='400' align='middle' allowScriptAccess='always' type='application/x-shockwave-flash'></embed>
+
+<iframe height=498 width=510 src='http://player.youku.com/embed/XMzU0NjY5OTAyOA==' frameborder=0 'allowfullscreen'></iframe>
+
 
 ## Dependencies & Installation & Usage 
 Due to the project is based on ORB-SLAM2, OpenCV4Androi is needed. Other third part dependence like g2o, Eigen, DBoW2 are all included in the project.
