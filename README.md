@@ -14,6 +14,13 @@ alt="ORB-SLAM2" width="300" height="180" border="10" /></a>
 
 
 ## Dependencies & Installation & Usage 
+To run this APP you need to copy the *./SLAM* folder into your mobile phones, which contains the vocabulary file(ORBvoc.bin) and camera Calibration file(mi6.yaml). Then you need to change the 20th row in the *./app/src/main/cpp/native-lib.cpp* to configure the correct path in your phone. You may also need to calibrate your phone's camera for better performance. More details of camera calibration can be found on google.
+
+```cpp
+ORB_SLAM2::System SLAM("/storage/emulated/0/SLAM/VOC/ORBvoc.bin","/storage/emulated/0/SLAM/Calibration/mi6.yaml",ORB_SLAM2::System::MONOCULAR,false);
+
+```
+
 Due to the project is based on ORB-SLAM2, OpenCV4Androi is needed. Other third part dependence like g2o, Eigen, DBoW2 are all included in the project. As for the IDE, Android studio 2.5 or higher version is recommended.
 
 
