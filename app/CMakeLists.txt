@@ -9,16 +9,11 @@ SET(CMAKE_BUILD_TYPE Release)
 
 #SET(CMAKE_BUILD_TYPE Debug)
 
-#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -Wall  -O3 -march=native ")
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall   -O3 -march=native")
+include(CheckCXXCompilerFlag)
+CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
+CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
 
-#include(CheckCXXCompilerFlag)
-#CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
-#CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
-
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-#add_definitions(-DCOMPILEDWITHC11)
-
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fopenmp")
 
 find_library( # Sets the name of the path variable.
               log-lib
@@ -174,28 +169,32 @@ add_library(native-lib
  )
 
 target_link_libraries(ORBSLAM2
-                        lib_opencv
                         DBoW2
                         g2o
                        ${EIGEN3_LIBS})
+
+# Set the location of the OpenCV 3.2.0 builts
+# (STL type: c++_static, Android ABI: arm64-v8a, release and debug modes)
+# OpenCV 3.2.0 prebuilts for Android with LLVM C++ runtime available for download
+# on: https://github.com/maximaging/opencv-3.2.0-android-prebuilts.git
+set(OpenCV_DIR /home/dev/workspace/repositories/opencv-3.2.0-android-prebuilts.git/opencv-3.2.0-android-25-arm64-v8a/${CMAKE_BUILD_TYPE})
+
+# Retrieve OpenCV_INCLUDE_DIRS and OpenCV_LIBS variables from OpenCVConfig.cmake
+find_package(OpenCV REQUIRED)
+
+message(STATUS "Configured OpenCV include directories: ${OpenCV_INCLUDE_DIRS}")
+
+include_directories(${OpenCV_INCLUDE_DIRS})
+
+message(STATUS "Configured OpenCV libraries: ${OpenCV_LIBS}")
+
 target_link_libraries( # Specifies the target library.
                        native-lib
 
                        # Links the target library to the log library
                        # included in the NDK.
                        ${log-lib}
-                       lib_opencv
-                       ORBSLAM2)
+                       ORBSLAM2
 
-set(pathToProject D:\\codes\\AndroidCode\\FireStoneYS ORB-SLAM2\\ORB-Test)
-set(pathToOpenCv D:\\software\\opencv3.0forAndroid\\OpenCV-android-sdk)
-#支持-std=gnu++11
-set(CMAKE_VERBOSE_MAKEFILE on)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
-#配置加载native依赖
-include_directories(${pathToOpenCv}/sdk/native/jni/include)
-#动态方式加载
-add_library( lib_opencv SHARED IMPORTED )
-
-#引入libopencv_java3.so文件
-set_target_properties(lib_opencv PROPERTIES IMPORTED_LOCATION   ${CMAKE_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libopencv_java3.so)
+                       # Links the target library to opencv static libs
+                       ${OpenCV_LIBS})
