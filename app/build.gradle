@@ -11,14 +11,16 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
-                cppFlags "-std=c++11 -frtti -fexceptions -fopenmp"
-                abiFilters  'armeabi', 'armeabi-v7a'
+                cppFlags "-std=c++11 -frtti -fexceptions"
+                arguments "-DANDROID_STL=c++_static"
+                abiFilters  'arm64-v8a'
             }
         }
         ndk {
             moduleName "native-lib"
             ldLibs "log gomp"//实现__android_log_print
-            abiFilters "armeabi", "armeabi-v7a"
+            abiFilters 'arm64-v8a'
+            stl "c++_static"
         }
     }
     buildTypes {
