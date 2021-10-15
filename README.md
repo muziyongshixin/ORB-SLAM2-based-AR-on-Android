@@ -2,6 +2,10 @@
 ## Introduction
 This is a Android Augmented Reality APP based on [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2) and OpenGL. The demo video can be found in the links below.
 
+## Notice
+We thank the great contribution of [@maximaging](https://github.com/maximaging). 
+
+This project may be out of date, and I am not work on SLAM for a long time, so you can disscuss with [@maximaging](https://github.com/maximaging) if you have any issues or questions. 
 
 **demo  videos** 
 
