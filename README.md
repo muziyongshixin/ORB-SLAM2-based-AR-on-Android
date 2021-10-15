@@ -7,7 +7,7 @@ We thank the great contribution of [@maximaging](https://github.com/maximaging).
 
 **This project may be out of date**, and I am not work on SLAM for a long time, so you can disscuss with [@maximaging](https://github.com/maximaging) if you have any issues or questions. 
 
-##demo  videos 
+## Demo Videos 
 
 <a href="http://player.youku.com/embed/XMzYzNTE5OTA4NA==" target="_blank"><img src="result/earth.jpg" 
 alt="ORB-SLAM2" width="260" height="160" border="10" /></a>&nbsp;&nbsp;
